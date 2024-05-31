@@ -4,11 +4,11 @@ using System.Diagnostics;
 
 namespace ExcelParsing.Controllers
 {
-    public class HomeController : Controller
+    public class ExcelParsingController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<ExcelParsingController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public ExcelParsingController(ILogger<ExcelParsingController> logger)
         {
             _logger = logger;
         }
