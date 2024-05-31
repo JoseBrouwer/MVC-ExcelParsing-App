@@ -19,8 +19,23 @@ namespace ExcelParsing.Models
         [Range(0, int.MaxValue, ErrorMessage = "Age must be a positive number.")]
         public int Age { get; set; }
 
+
+        public enum Status
+        {
+            Active,
+            Inactive,
+            Hold
+        }
         [Required]
-        [RegularExpression("Active|Inactive|Hold", ErrorMessage = "Status must be Active, Inactive, or Hold.")]
-        public string Status { get; set; }
+        public Status status{ get; set; }
+
+        public Person(int iD = 0, string firstName = " First Test", string lastName = " Last Test", int age = 21, Status state = 0)
+        {
+            ID = iD;
+            FirstName = firstName;
+            LastName = lastName;
+            Age = age;
+            status = state;
+        }
     }
 }

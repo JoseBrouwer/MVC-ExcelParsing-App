@@ -15,6 +15,14 @@ namespace ExcelParsing.Controllers
 
         public IActionResult Index()
         {
+            var TestList = new List<Person>
+            {
+                new Person(), 
+                new Person(),
+                new Person(),
+                new Person(),
+                new Person(),
+            };
             return View();
         }
 
