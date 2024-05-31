@@ -1,0 +1,64 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+/*---------------------DEFAULT STYLES---------------------*/
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+/*---------------------My Styles---------------------*/
+#upload{
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    background-color: rgb(76, 180, 255);
+    margin: 10px;
+}
+#contents {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* This makes the child elements take the full width of the container */
+    border: solid black;
+    width: 100%;
+    margin: 0 auto; /* Center the container */
+}
+
+#header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%; /* Make sure the header takes the full width of #contents */
+}
+
+.header {
+    border: solid black;
+    width: 20%; /* Distribute the width equally among the headers */
+    height: 30px;
+    flex: 1; /* This makes sure each header takes an equal portion of the available space */
+}
+.cell{
+    border: solid black;
+    width: 20%;
+    height: 30px;
+    flex: 1;
+}
