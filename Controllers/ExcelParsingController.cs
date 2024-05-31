@@ -23,7 +23,7 @@ namespace ExcelParsing.Controllers
                 new Person(),
                 new Person(),
             };
-            return View();
+            return View(TestList);
         }
 
         public IActionResult Privacy()

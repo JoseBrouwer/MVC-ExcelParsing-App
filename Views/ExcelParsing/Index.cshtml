@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<ExcelParsing.Models.Person>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -14,9 +15,15 @@
             <div class="header">Status</div>
         </div>
 
-        <div id="cell-container">
-
-        </div>
-
+        @foreach(var person in Model)
+        {
+            <div id="cell-container">
+                <div class="cell">@person.ID</div>
+                <div class="cell">@person.FirstName</div>
+                <div class="cell">@person.LastName</div>
+                <div class="cell">@person.Age</div>
+                <div class="cell">@person.status</div>
+            </div>
+        }
     </div>
 </div>
