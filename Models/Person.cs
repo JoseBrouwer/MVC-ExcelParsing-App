@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ExcelParsing.Models
 {
     public class Person
     {
         [Key] //Primary Key
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]  // Disable automatic value generation
         public int ID { get; set; }
 
         [Required]
@@ -29,9 +31,10 @@ namespace ExcelParsing.Models
         [Required]
         public Status status{ get; set; }
 
-        public Person(int iD = 0, string firstName = " First Test", string lastName = " Last Test", int age = 21, Status state = 0)
+        public Person() { }
+        public Person(int id, string firstName, string lastName, int age, Status state)
         {
-            ID = iD;
+            ID = id;
             FirstName = firstName;
             LastName = lastName;
             Age = age;

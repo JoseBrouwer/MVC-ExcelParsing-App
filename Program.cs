@@ -1,7 +1,13 @@
+using ExcelParsing.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Add Db to Services
+builder.Services.AddDbContext<AppDbContext>();
 
 var app = builder.Build();
 
