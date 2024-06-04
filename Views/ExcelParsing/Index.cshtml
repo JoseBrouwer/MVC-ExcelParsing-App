@@ -8,12 +8,11 @@
     <div id="contents">
         
         <div id="header-container"> 
-            <!--Bind sorting functions to each header-->
-            <div class="header"> <a href="">ID</a> </div>
-            <div class="header"> <a href="">First Name</a> </div>
-            <div class="header"> <a href="">Last Name</a> </div>
-            <div class="header"> <a href="">Age</a> </div>
-            <div class="header"> <a href="">Status</a> </div>
+            <div class="header"> <a asp-action="Index" asp-route-sortOrder="@ViewData["IDSort"]">ID</a> </div>
+            <div class="header"> <a asp-action="Index" asp-route-sortOrder="@ViewData["FirstNameSort"]">First Name</a> </div>
+            <div class="header"> <a asp-action="Index" asp-route-sortOrder="@ViewData["LastNameSort"]">Last Name</a> </div>
+            <div class="header"> <a asp-action="Index" asp-route-sortOrder="@ViewData["AgeSort"]">Age</a> </div>
+            <div class="header"> <a asp-action="Index" asp-route-sortOrder="@ViewData["StatusSort"]">Status</a> </div>
         </div>
 
         @foreach(var person in Model)
