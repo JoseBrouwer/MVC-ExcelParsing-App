@@ -23,8 +23,13 @@ namespace ExcelParsing.Controllers
 
         public async Task<IActionResult> Index(string sortOrder, int page = 1, int pageSize = 50)
         {
-            //_context.Persons.RemoveRange(_context.Persons);
-            //await _context.SaveChangesAsync();
+            int totalEntries = await _context.Persons.CountAsync(); // Retrieve the total count of entries in the database
+            int remainder = totalEntries % pageSize;
+            int totalPages = (int)Math.Ceiling(totalEntries / (double)pageSize);
+            ViewData["TotalEntries"] = totalEntries;
+            ViewData["TotalPages"] = totalPages;
+            ViewData["CurrentPage"] = page;
+            ViewData["CurrentSort"] = sortOrder;
 
             ViewData["IDSort"] = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
             ViewData["FirstNameSort"] = sortOrder == "firstName" ? "firstName_desc" : "firstName";
@@ -77,16 +82,6 @@ namespace ExcelParsing.Controllers
             var pagedPersons = await persons.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
             return View(pagedPersons);
-
-            // Retrieve the list of Persons from the database
-            //for (int i = 2; i >= 0; i--)
-            //{
-            //    Person temp = new Person { ID = i, FirstName = $"{i} First Test", LastName = $"{i} Last Test", Age = i, status = (Person.Status)i };
-            //    _context.Persons.Add(temp);
-            //}
-            //_context.SaveChanges();
-            //var persons = await _context.Persons.ToListAsync();
-            //return View(persons);
         }
 
         public IActionResult Privacy()

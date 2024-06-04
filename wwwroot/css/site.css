@@ -70,3 +70,11 @@ body {
     height: 30px;
     flex: 1;
 }
+
+.page-buttons {
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
+    background-color: rgb(76, 180, 255);
+    margin: 10px;
+}

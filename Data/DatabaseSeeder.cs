@@ -16,7 +16,7 @@ namespace ExcelParsing.Data
                 }
 
                 // Seed the database with test data
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 100; i++)
                 {
                     Person temp = new Person
                     {
@@ -24,7 +24,7 @@ namespace ExcelParsing.Data
                         FirstName = $"{i} First Test",
                         LastName = $"{i} Last Test",
                         Age = i,
-                        status = (Person.Status)i
+                        status = (Person.Status)(i % 3)
                     };
                     context.Persons.Add(temp);
                 }

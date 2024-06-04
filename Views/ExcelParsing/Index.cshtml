@@ -1,10 +1,14 @@
 ﻿@model List<ExcelParsing.Models.Person>
 @{
     ViewData["Title"] = "Home Page";
+    int currentPage = ViewData["CurrentPage"] != null ? (int)ViewData["CurrentPage"] : 1;
+    int totalPages = ViewData["TotalPages"] != null ? (int)ViewData["TotalPages"] : 1;
 }
 
 <div class="text-center">
+    
     <button id="upload">UPLOAD</button>
+    
     <div id="contents">
         
         <div id="header-container"> 
@@ -26,4 +30,13 @@
             </div>
         }
     </div>
+    
+    <div>
+        <form method="get" asp-action="Index">
+            <input type="hidden" name="sortOrder" value="@ViewData["CurrentSort"]" />
+            <button type="submit" class="page-buttons" name="page" value="@(currentPage - 1)" @(currentPage <= 1 ? "disabled" : "")>Previous</button>
+            <button type="submit" class="page-buttons" name="page" value="@(currentPage + 1)" @(currentPage >= totalPages ? "disabled" : "")>Next</button>
+        </form>
+    </div>
+
 </div>
