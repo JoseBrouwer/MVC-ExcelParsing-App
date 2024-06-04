@@ -57,6 +57,9 @@ body {
     height: 30px;
     flex: 1; /* This makes sure each header takes an equal portion of the available space */
 }
+.header-a-tag{
+    text-decoration:none;
+}
 #cell-container {
     border: solid red;
     display: flex;
@@ -70,8 +73,21 @@ body {
     height: 30px;
     flex: 1;
 }
-
-.page-buttons {
+#pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 auto;
+}
+.pages-form{
+    flex: 1;
+}
+.page-buttons{
+    margin-top: 10px;
+    font-weight: bold;
+    /*Add styling for when the button is selected*/
+}
+.prev-next-buttons{
     width: 100px;
     height: auto;
     border-radius: 10px;
