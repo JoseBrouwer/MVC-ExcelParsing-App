@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     font-family: 'Times New Roman', Times, serif;
+    text-align: center;
 }
 /*---------------------DEFAULT STYLES---------------------*/
 html {
@@ -24,27 +25,29 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: rgb(0, 126, 167);
 }
 /*---------------------My Styles---------------------*/
-#upload{
+#upload {
     width: 200px;
     height: auto;
     border-radius: 10px;
-    background-color: rgb(76, 180, 255);
+    background-color: rgb(173, 245, 255);
     margin: 10px;
+    font-weight: bold;
 }
 #contents {
     display: flex;
     flex-direction: column;
     align-items: stretch; /* This makes the child elements take the full width of the container */
-    border: solid pink;
+    /*border: solid black;*/
     width: 100%;
     margin: 0 auto; /* Center the container */
 }
 
 #header-container {
-    border: solid black;
+    border: 1px solid black;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -52,45 +55,54 @@ body {
 }
 
 .header {
-    border: solid grey;
+    border: 1px solid black;
     width: 20%; /* Distribute the width equally among the headers */
     height: 30px;
     flex: 1; /* This makes sure each header takes an equal portion of the available space */
+    background: rgb(173, 245, 255);
+}
+.header:hover {
+    /*cursor: pointer;*/
+    background: rgb(214, 250, 255);
 }
 .header-a-tag{
     text-decoration:none;
+    color: black;
+    font-weight: bold;
+}
+.header-a-tag:hover{
+    color: rgb(254, 109, 115);
 }
 #cell-container {
-    border: solid red;
+    border: 1px solid black;
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 100%; /* Make sure the header takes the full width of #contents */
 }
-.cell{
-    border: solid green;
+.cell {
+    border: 1px solid black;
     width: 20%;
     height: 30px;
     flex: 1;
+    background: white;
 }
 #pagination {
-    display: flex;
+    display: inline-block;
     flex-direction: row;
     align-items: center;
     margin: 0 auto;
 }
-.pages-form{
-    flex: 1;
-}
-.page-buttons{
+.page-buttons {
     margin-top: 10px;
     font-weight: bold;
-    /*Add styling for when the button is selected*/
+    background-color: rgb(173, 245, 255);
+    border-radius: 10px;
 }
-.prev-next-buttons{
+.prev-next-buttons {
     width: 100px;
     height: auto;
     border-radius: 10px;
-    background-color: rgb(76, 180, 255);
+    background-color: rgb(173, 245, 255);
     margin: 10px;
 }

@@ -6,47 +6,57 @@
     int tempCurrent = currentPage;
 }
 
-<div class="text-center">
+@* <div class="text-center"> *@
     
-    <button id="upload">UPLOAD</button>
+<button id="upload">UPLOAD</button>
     
-    <div id="contents">
+<div id="contents">
         
-        <div id="header-container"> 
-            <div class="header"> <a asp-action="Index" asp-route-sortOrder="@ViewData["IDSort"]" class="header-a-tag">ID</a> </div>
-            <div class="header"> <a asp-action="Index" asp-route-sortOrder="@ViewData["FirstNameSort"]" class="header-a-tag">First Name</a> </div>
-            <div class="header"> <a asp-action="Index" asp-route-sortOrder="@ViewData["LastNameSort"]" class="header-a-tag">Last Name</a> </div>
-            <div class="header"> <a asp-action="Index" asp-route-sortOrder="@ViewData["AgeSort"]" class="header-a-tag">Age</a> </div>
-            <div class="header"> <a asp-action="Index" asp-route-sortOrder="@ViewData["StatusSort"]" class="header-a-tag">Status</a> </div>
+    <div id="header-container"> 
+        <div class="header">
+            <a asp-action="Index" asp-route-sortOrder="@ViewData["IDSort"]" class="header-a-tag">ID</a>
         </div>
-
-        @foreach(var person in Model)
-        {
-            <div id="cell-container">
-                <div class="cell">@person.ID</div>
-                <div class="cell">@person.FirstName</div>
-                <div class="cell">@person.LastName</div>
-                <div class="cell">@person.Age</div>
-                <div class="cell">@person.status</div>
-            </div>
-        }
+        <div class="header"> 
+            <a asp-action="Index" asp-route-sortOrder="@ViewData["FirstNameSort"]" class="header-a-tag">First Name</a> 
+        </div>
+        <div class="header"> 
+            <a asp-action="Index" asp-route-sortOrder="@ViewData["LastNameSort"]" class="header-a-tag">Last Name</a> 
+        </div>
+        <div class="header"> 
+            <a asp-action="Index" asp-route-sortOrder="@ViewData["AgeSort"]" class="header-a-tag">Age</a> 
+        </div>
+        <div class="header"> 
+            <a asp-action="Index" asp-route-sortOrder="@ViewData["StatusSort"]" class="header-a-tag">Status</a> 
+        </div>
     </div>
 
-    <div id="pagination">
-        <form class="pages-form" method="get" asp-action="Index">
-            @for(int i = 1; i <= totalPages; i++)
-            {
-                <button class="page-buttons" type="submit" name="page" value="@i">@i</button>
-            }
-        </form>
-    </div>
-    
-    <div>
-        <form method="get" asp-action="Index">
-            <input type="hidden" name="sortOrder" value="@ViewData["CurrentSort"]" />
-            <button type="submit" class="prev-next-buttons" name="page" value="@(currentPage - 1)" @(currentPage <= 1 ? "disabled" : "")>Previous</button>
-            <button type="submit" class="prev-next-buttons" name="page" value="@(currentPage + 1)" @(currentPage >= totalPages ? "disabled" : "")>Next</button>
-        </form>
-    </div>
-
+    @foreach(var person in Model)
+    {
+        <div id="cell-container">
+            <div class="cell">@person.ID</div>
+            <div class="cell">@person.FirstName</div>
+            <div class="cell">@person.LastName</div>
+            <div class="cell">@person.Age</div>
+            <div class="cell">@person.status</div>
+        </div>
+    }
 </div>
+
+<div id="pagination">
+    <form method="get" asp-action="Index">
+        @for(int i = 1; i <= totalPages; i++)
+        {
+            <button class="page-buttons" type="submit" name="page" value="@i">@i</button>
+        }
+    </form>
+</div>
+    
+<div>
+    <form method="get" asp-action="Index">
+        <input type="hidden" name="sortOrder" value="@ViewData["CurrentSort"]" />
+        <button type="submit" class="prev-next-buttons" name="page" value="@(currentPage - 1)" @(currentPage <= 1 ? "disabled" : "")>Previous</button>
+        <button type="submit" class="prev-next-buttons" name="page" value="@(currentPage + 1)" @(currentPage >= totalPages ? "disabled" : "")>Next</button>
+    </form>
+</div>
+
+@* </div> *@
