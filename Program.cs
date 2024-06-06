@@ -15,7 +15,7 @@ builder.Services.AddScoped<ExcelService>();
 
 var app = builder.Build();
 
-// Seed the database
+// Seed the database for testing
 //using (var scope = app.Services.CreateScope())
 //{
 //    var services = scope.ServiceProvider;

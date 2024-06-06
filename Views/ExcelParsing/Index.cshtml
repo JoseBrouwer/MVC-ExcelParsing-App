@@ -46,6 +46,7 @@
 
 <div id="pagination">
     <form method="get" asp-action="Index">
+        <input type="hidden" name="sortOrder" value="@ViewData["CurrentSort"]" />
         @for(int i = 1; i <= totalPages; i++)
         {
             <button class="page-buttons" type="submit" name="page" value="@i">@i</button>

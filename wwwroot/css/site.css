@@ -37,6 +37,9 @@ body {
     margin: 10px;
     font-weight: bold;
 }
+#upload:hover{
+    background: rgb(214, 250, 255);
+}
 #contents {
     display: flex;
     flex-direction: column;
@@ -99,10 +102,16 @@ body {
     background-color: rgb(173, 245, 255);
     border-radius: 10px;
 }
+.page-buttons:hover {
+    background: rgb(214, 250, 255);
+}
 .prev-next-buttons {
     width: 100px;
     height: auto;
     border-radius: 10px;
     background-color: rgb(173, 245, 255);
     margin: 10px;
+}
+.prev-next-buttons:hover {
+    background: rgb(214, 250, 255);
 }
