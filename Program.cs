@@ -10,14 +10,17 @@ builder.Services.AddControllersWithViews();
 //Add Db to Services
 builder.Services.AddDbContext<AppDbContext>();
 
+// Register the ExcelService
+builder.Services.AddScoped<ExcelService>();
+
 var app = builder.Build();
 
 // Seed the database
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    DatabaseSeeder.Seed(services);
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var services = scope.ServiceProvider;
+//    DatabaseSeeder.Seed(services);
+//}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

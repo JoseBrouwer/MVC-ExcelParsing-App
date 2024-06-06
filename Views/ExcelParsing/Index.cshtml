@@ -3,12 +3,14 @@
     ViewData["Title"] = "Home Page";
     int currentPage = ViewData["CurrentPage"] != null ? (int)ViewData["CurrentPage"] : 1;
     int totalPages = ViewData["TotalPages"] != null ? (int)ViewData["TotalPages"] : 1;
-    int tempCurrent = currentPage;
+     string currentSort = ViewData["CurrentSort"]?.ToString();
 }
 
 @* <div class="text-center"> *@
     
-<button id="upload">UPLOAD</button>
+<form asp-controller="ExcelParsing" asp-action="Upload" method="get">
+    <button id="upload" type="submit">UPLOAD</button>
+</form>
     
 <div id="contents">
         

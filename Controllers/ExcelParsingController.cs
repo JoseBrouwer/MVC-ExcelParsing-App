@@ -1,3 +1,4 @@
+using ExcelParsing.Data;
 using ExcelParsing.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,16 +10,12 @@ namespace ExcelParsing.Controllers
 {
     public class ExcelParsingController : Controller
     {
-        //private readonly ILogger<ExcelParsingController> _logger;
-        //public ExcelParsingController(ILogger<ExcelParsingController> logger)
-        //{
-        //    _logger = logger;
-        //}
-
         private readonly AppDbContext _context;
-        public ExcelParsingController(AppDbContext context)
+        private readonly ExcelService _excelService;
+        public ExcelParsingController(AppDbContext context, ExcelService excelService)
         {
             _context = context;
+            _excelService = excelService;
         }
 
         public async Task<IActionResult> Index(string sortOrder, int page = 1, int pageSize = 50)
@@ -82,6 +79,31 @@ namespace ExcelParsing.Controllers
             var pagedPersons = await persons.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
             return View(pagedPersons);
+        }
+
+        public IActionResult Upload()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UploadFile(IFormFile file)
+        {
+            //file is provided
+            if (file != null && file.Length > 0)
+            {
+                //retrieve file path
+                var filePath = Path.GetTempFileName();
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream); //copy file contents to file stream
+                }
+                //Call function that reads from stream and creates Person objects
+                var persons = _excelService.ReadExcelFile(filePath);
+                _context.Persons.AddRange(persons); //add to DB
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Index)); //reload page
         }
 
         public IActionResult Privacy()
