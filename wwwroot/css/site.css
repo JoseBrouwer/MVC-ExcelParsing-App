@@ -115,3 +115,10 @@ body {
 .prev-next-buttons:hover {
     background: rgb(214, 250, 255);
 }
+.error-box {
+    background: rgb(200, 83, 54);
+    border-radius: 10px;
+}
+.error-text{
+    color: white;
+}
