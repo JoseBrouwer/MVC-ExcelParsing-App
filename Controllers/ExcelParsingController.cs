@@ -1,5 +1,6 @@
 using ExcelParsing.Data;
 using ExcelParsing.Models;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -98,10 +99,18 @@ namespace ExcelParsing.Controllers
                 {
                     await file.CopyToAsync(stream); //copy file contents to file stream
                 }
-                //Call function that reads from stream and creates Person objects
-                var persons = _excelService.ReadExcelFile(filePath);
-                _context.Persons.AddRange(persons); //add to DB
-                await _context.SaveChangesAsync();
+                try
+                {
+                    //Call function that reads from stream and creates Person objects
+                    var persons = _excelService.ReadExcelFile(filePath);
+                    _context.Persons.AddRange(persons);
+                    await _context.SaveChangesAsync();
+                }
+                catch (Exception ex) //reading file failed
+                {
+                    TempData["ErrorMessage"] = ex.Message; // Log error
+                    return RedirectToAction("Error"); //redirect to error page
+                }
             }
             return RedirectToAction(nameof(Index)); //reload page
         }
@@ -111,10 +120,16 @@ namespace ExcelParsing.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            ViewData["ErrorMessage"] = TempData["ErrorMessage"];
+            return View();
         }
+
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
+        //{
+        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //}
     }
 }

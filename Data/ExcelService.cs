@@ -8,33 +8,48 @@ namespace ExcelParsing.Data
     {
         public List<Person> ReadExcelFile(string filePath)
         {
-            //Handles possible issues with text encoding
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 
             var persons = new List<Person>();
 
-            //Auto-detects .xls, .xlsx, .xlsb files
-            using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
+            try
             {
-                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
                 {
-                    var dataSet = reader.AsDataSet();
-                    var dataTable = dataSet.Tables[0];
-
-                    for (int row = 1; row < dataTable.Rows.Count; row++)
+                    using (var reader = ExcelReaderFactory.CreateReader(stream))
                     {
-                        var person = new Person
+                        var dataSet = reader.AsDataSet();
+                        var dataTable = dataSet.Tables[0];
+
+                        for (int row = 1; row < dataTable.Rows.Count; row++)
                         {
-                            ID = int.Parse(dataTable.Rows[row][0].ToString()),
-                            FirstName = dataTable.Rows[row][1].ToString(),
-                            LastName = dataTable.Rows[row][2].ToString(),
-                            Age = int.Parse(dataTable.Rows[row][3].ToString()),
-                            status = (Person.Status)Enum.Parse(typeof(Person.Status), dataTable.Rows[row][4].ToString())
-                        };
-                        persons.Add(person);
+                            try
+                            {
+                                var person = new Person
+                                {
+                                    ID = int.Parse(dataTable.Rows[row][0].ToString()),
+                                    FirstName = dataTable.Rows[row][1].ToString(),
+                                    LastName = dataTable.Rows[row][2].ToString(),
+                                    Age = int.Parse(dataTable.Rows[row][3].ToString()),
+                                    status = (Person.Status)Enum.Parse(typeof(Person.Status), dataTable.Rows[row][4].ToString())
+                                };
+                                persons.Add(person);
+                            }
+                            catch (FormatException ex)
+                            {
+                                // Handle specific format exception
+                                throw new Exception($"Data format error in row {row + 1}: {ex.Message}", ex);
+                            }
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                // Log and rethrow the exception to be handled by global exception handler
+                throw new Exception($"Error reading Excel file: {ex.Message}", ex);
+            }
+
             return persons;
         }
     }

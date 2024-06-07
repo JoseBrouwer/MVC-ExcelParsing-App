@@ -1,4 +1,5 @@
 using ExcelParsing.Data;
+using ExcelParsing.Middleware;
 using ExcelParsing.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,12 +23,19 @@ var app = builder.Build();
 //    DatabaseSeeder.Seed(services);
 //}
 
+// Add the custom error handling middleware
+app.UseMiddleware<ErrorHandlingMiddleware>();
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+}
+else
+{
+    app.UseDeveloperExceptionPage();
 }
 
 app.UseHttpsRedirection();
