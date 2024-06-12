@@ -28,15 +28,15 @@ namespace ExcelParsing.Data
                             {
                                 //check for issues before assignment
                                 string? firstValue = dataTable.Rows[row][1].ToString();
-                                if (firstValue?.Length > 50 || firstValue == null)
+                                if (firstValue == null || firstValue?.Length > 50)
                                     throw new FormatException($"First name can not be longer than 50 characters");
 
                                 string? lastValue = dataTable.Rows[row][2].ToString();
-                                if (lastValue?.Length > 50 || lastValue == null)
+                                if (lastValue == null || lastValue?.Length > 50)
                                     throw new FormatException($"Last name can not be longer than 50 characters");
 
                                 int ageValue = int.Parse(dataTable.Rows[row][3].ToString());
-                                if (ageValue < 0)
+                                if ( ageValue < 0)
                                     throw new FormatException($"Age can not be a negative number");
 
                                 var person = new Person
