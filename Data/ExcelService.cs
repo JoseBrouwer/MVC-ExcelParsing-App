@@ -1,5 +1,6 @@
 ﻿using ExcelDataReader;
 using ExcelParsing.Models;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.IO;
 
 namespace ExcelParsing.Data
@@ -25,12 +26,25 @@ namespace ExcelParsing.Data
                         {
                             try
                             {
+                                //check for issues before assignment
+                                string? firstValue = dataTable.Rows[row][1].ToString();
+                                if (firstValue?.Length > 50 || firstValue == null)
+                                    throw new FormatException($"First name can not be longer than 50 characters");
+
+                                string? lastValue = dataTable.Rows[row][2].ToString();
+                                if (lastValue?.Length > 50 || lastValue == null)
+                                    throw new FormatException($"Last name can not be longer than 50 characters");
+
+                                int ageValue = int.Parse(dataTable.Rows[row][3].ToString());
+                                if (ageValue < 0)
+                                    throw new FormatException($"Age can not be a negative number");
+
                                 var person = new Person
                                 {
                                     ID = int.Parse(dataTable.Rows[row][0].ToString()),
-                                    FirstName = dataTable.Rows[row][1].ToString(),
-                                    LastName = dataTable.Rows[row][2].ToString(),
-                                    Age = int.Parse(dataTable.Rows[row][3].ToString()),
+                                    FirstName = firstValue,
+                                    LastName = lastValue,
+                                    Age = ageValue,
                                     status = (Person.Status)Enum.Parse(typeof(Person.Status), dataTable.Rows[row][4].ToString())
                                 };
                                 persons.Add(person);
@@ -38,7 +52,7 @@ namespace ExcelParsing.Data
                             catch (FormatException ex)
                             {
                                 // Handle specific format exception
-                                throw new Exception($"Data format error in row {row + 1}: {ex.Message}", ex);
+                                throw new Exception($"Data format error in row {row + 1} -> {ex.Message}", ex);
                             }
                         }
                     }
@@ -47,7 +61,7 @@ namespace ExcelParsing.Data
             catch (Exception ex)
             {
                 // Log and rethrow the exception to be handled by global exception handler
-                throw new Exception($"Error reading Excel file: {ex.Message}", ex);
+                throw new Exception($"{ex.Message}", ex);
             }
 
             return persons;
