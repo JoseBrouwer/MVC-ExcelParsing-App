@@ -115,6 +115,29 @@ body {
 .prev-next-buttons:hover {
     background: rgb(214, 250, 255);
 }
+.upload-headers{
+    color: white;
+}
+.form-group{
+    display: flex;
+    justify-content:center;
+    margin: 5px;
+    padding: 0;
+}
+.form-control {
+    max-width: 300px;
+    min-width: 100px;
+}
+.btn {
+    color: #000;
+    background-color: rgb(195, 235, 120);
+    border-color: rgb(195, 235, 120);
+}
+.btn:hover {
+    color: #000;
+    background-color: rgb(176, 228, 78);
+    border-color: rgb(176, 228, 78);
+}
 .error-box {
     background: rgb(200, 83, 54);
     border-radius: 10px;

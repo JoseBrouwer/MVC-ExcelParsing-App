@@ -33,7 +33,8 @@ namespace ExcelParsing.Controllers
             ViewData["FirstNameSort"] = sortOrder == "firstName" ? "firstName_desc" : "firstName";
             ViewData["LastNameSort"] = sortOrder == "lastName" ? "lastName_desc" : "lastName";
             ViewData["AgeSort"] = sortOrder == "age" ? "age_desc" : "age";
-            ViewData["StatusSort"] = sortOrder == "status" ? "status_desc" : "status";
+            ViewData["StatusSort"] = sortOrder == "active" ? "inactive" : (sortOrder == "inactive" ? "hold" : "active");
+
 
             IQueryable<Person> persons = _context.Persons;
 
@@ -61,11 +62,16 @@ namespace ExcelParsing.Controllers
                 case "age_desc":
                     persons = persons.OrderByDescending(p => p.Age);
                     break;
-                case "status":
-                    persons = persons.OrderBy(p => p.status);
+                case "active":
+                    //set order by number. If status is Active = 0. Then, status Inactive = 1. Else, Hold = 2.
+                    //OrderBy the sorts as Active, Inactive, Else
+                    persons = persons.OrderBy(p => p.status == Person.Status.Active ? 0 : p.status == Person.Status.Inactive ? 1 : 2);
                     break;
-                case "status_desc":
-                    persons = persons.OrderByDescending(p => p.status);
+                case "inactive":
+                    persons = persons.OrderBy(p => p.status == Person.Status.Inactive ? 0 : p.status == Person.Status.Hold ? 1 : 2);
+                    break;
+                case "hold":
+                    persons = persons.OrderBy(p => p.status == Person.Status.Hold ? 0 : p.status == Person.Status.Active ? 1 : 2);
                     break;
                 default:
                     persons = persons.OrderBy(p => p.ID);
@@ -93,6 +99,10 @@ namespace ExcelParsing.Controllers
             //file is provided
             if (file != null && file.Length > 0)
             {
+                //clear db for new upload
+                _context.Persons.RemoveRange(_context.Persons);
+                await _context.SaveChangesAsync();
+
                 //retrieve file path
                 var filePath = Path.GetTempFileName();
                 using (var stream = new FileStream(filePath, FileMode.Create))

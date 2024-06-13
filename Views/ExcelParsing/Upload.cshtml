@@ -2,13 +2,16 @@
     ViewData["Title"] = "Upload Excel File";
 }
 
-<h2>Upload Excel File</h2>
+<h2 class="upload-headers">Upload Excel File</h2>
+<h3 class ="upload-headers">NOTE: Any previously uploaded spreadsheet will be removed in favor of the new upload</h3>
 
 <form asp-action="UploadFile" enctype="multipart/form-data" method="post">
     <div class="form-group">
         <input type="file" name="file" class="form-control" />
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Upload</button>
+        <button type="submit" class="btn">Upload</button>
     </div>
+
+    <h1> PLACE SAMPLE IMAGE HERE</h1>
 </form>
