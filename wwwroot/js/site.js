@@ -1,4 +1,15 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function toggleInput(otherInputId, currentInput) {
+    var otherInput = document.getElementById(otherInputId);
+    if (currentInput.value.length > 0) {
+        otherInput.disabled = true;
+    } else {
+        otherInput.disabled = false;
+    }
+}
 
-// Write your JavaScript code.
+function clearInput(otherInputId, inputId) {
+    var otherInput = document.getElementById(otherInputId);
+    var input = document.getElementById(inputId);
+    input.value = '';
+    otherInput.disabled = false;
+}

@@ -33,12 +33,17 @@ body {
     width: 200px;
     height: auto;
     border-radius: 10px;
-    background-color: rgb(173, 245, 255);
+    background-color: rgb(195, 235, 120);
     margin: 10px;
     font-weight: bold;
 }
-#upload:hover{
-    background: rgb(214, 250, 255);
+#upload:hover {
+    color: #000;
+    background-color: rgb(137, 195, 29);
+    border-color: rgb(137, 195, 29);
+}
+button[type="submit"] {
+    flex-shrink: 0; /* Prevent the button from shrinking */
 }
 #contents {
     display: flex;
@@ -99,30 +104,60 @@ body {
 .page-buttons {
     margin-top: 10px;
     font-weight: bold;
-    background-color: rgb(173, 245, 255);
+    color: #000;
+    background-color: rgb(195, 235, 120);
+    border-color: rgb(195, 235, 120);
     border-radius: 10px;
 }
 .page-buttons:hover {
-    background: rgb(214, 250, 255);
+    color: #000;
+    background-color: rgb(137, 195, 29);
+    border-color: rgb(137, 195, 29);
 }
 .prev-next-buttons {
     width: 100px;
     height: auto;
     border-radius: 10px;
-    background-color: rgb(173, 245, 255);
+    background-color: rgb(195, 235, 120);
+    border-color: rgb(195, 235, 120);
     margin: 10px;
 }
 .prev-next-buttons:hover {
-    background: rgb(214, 250, 255);
+    color: #000;
+    background-color: rgb(137, 195, 29);
+    border-color: rgb(137, 195, 29);
 }
 .upload-headers{
     color: white;
 }
+.search-form{
+    display: inline;
+}
 .form-group{
     display: flex;
     justify-content:center;
+    align-items: center;
     margin: 5px;
     padding: 0;
+}
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.search-group {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+.search-input {
+    flex: 1;
+    margin-right: 5px;
+}
+
+.clear-btn {
+    margin-left: 5px;
 }
 .form-control {
     max-width: 300px;
@@ -133,10 +168,13 @@ body {
     background-color: rgb(195, 235, 120);
     border-color: rgb(195, 235, 120);
 }
+.search-btn{
+    margin: 10px;
+}
 .btn:hover {
     color: #000;
-    background-color: rgb(176, 228, 78);
-    border-color: rgb(176, 228, 78);
+    background-color: rgb(137, 195, 29);
+    border-color: rgb(137, 195, 29);
 }
 .error-box {
     background: rgb(200, 83, 54);

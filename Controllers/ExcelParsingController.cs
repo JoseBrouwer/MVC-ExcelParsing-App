@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Xml.Linq;
 using static ExcelParsing.Models.Person;
 
 
@@ -19,7 +20,7 @@ namespace ExcelParsing.Controllers
             _excelService = excelService;
         }
 
-        public async Task<IActionResult> Index(string sortOrder, int page = 1, int pageSize = 50)
+        public async Task<IActionResult> Index(string sortOrder, string name, string status, int page = 1, int pageSize = 50)
         {
             int totalEntries = await _context.Persons.CountAsync(); // Retrieve the total count of entries in the database
             int remainder = totalEntries % pageSize;
@@ -37,6 +38,17 @@ namespace ExcelParsing.Controllers
 
 
             IQueryable<Person> persons = _context.Persons;
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                name = char.ToUpper(name[0]) + name.Substring(1);
+                persons = persons.Where(p => p.FirstName.Contains(name) || p.LastName.Contains(name));
+            }
+            else if (!string.IsNullOrEmpty(status))
+            {
+                status = char.ToUpper(status[0]) + status.Substring(1);
+                persons = persons.Where(p => p.status.ToString().Contains(status));
+            }
 
             // Apply sorting in ascending and descending order
             switch (sortOrder)

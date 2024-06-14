@@ -3,7 +3,7 @@
     ViewData["Title"] = "Home Page";
     int currentPage = ViewData["CurrentPage"] != null ? (int)ViewData["CurrentPage"] : 1;
     int totalPages = ViewData["TotalPages"] != null ? (int)ViewData["TotalPages"] : 1;
-     string currentSort = ViewData["CurrentSort"]?.ToString();
+    string currentSort = ViewData["CurrentSort"]?.ToString();
 }
 
 @* <div class="text-center"> *@
@@ -11,6 +11,22 @@
 <form asp-controller="ExcelParsing" asp-action="Upload" method="get">
     <button id="upload" type="submit">UPLOAD</button>
 </form>
+
+<div class="search-container">
+    <form asp-action="Index" method="get" class="search-form">
+        <div class="form-group search-group">
+            <input type="text" name="name" id="nameInput" class="form-control search-input" placeholder="Search by Name" oninput="toggleInput('statusInput', this)">
+            <button type="button" class="btn btn-secondary clear-btn" onclick="clearInput('statusInput','nameInput')">Clear</button>
+        </div>
+
+        <div class="form-group search-group">
+            <input type="text" name="status" id="statusInput" class="form-control search-input" placeholder="Search by Status" oninput="toggleInput('nameInput', this)">
+            <button type="button" class="btn btn-secondary clear-btn" onclick="clearInput('nameInput','statusInput')">Clear</button>
+        </div>
+
+        <button type="submit" class="btn search-btn">Search</button>
+    </form>
+</div>
     
 <div id="contents">
         
