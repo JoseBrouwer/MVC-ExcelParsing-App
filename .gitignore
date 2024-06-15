@@ -1,3 +1,42 @@
-/obj
-/bin
-/.vs
+# Ignore Visual Studio temporary files, build results, and
+# various types of logs.
+## User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## User-specific files (Mono Auto Generated)
+mono_crash.*
+
+## User-specific files (Visual Studio Code)
+.vscode/
+
+## User-specific files (Windows)
+Thumbs.db
+*.db
+*.DS_Store
+
+## User-specific files (Mac)
+.DS_Store
+
+## SDK
+## Ignore SDK settings folder.
+sdk/
+
+# ASP.NET Core specific ignores
+## The build output folder
+bin/
+obj/
+
+## VS Code directories
+.vs/
+.vscode/
+
+# Test Projects
+## Include your test projects explicitly if needed
+!ExcelParsing.Tests/**
+
+# Log files
+*.log
