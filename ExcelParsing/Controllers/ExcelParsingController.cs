@@ -1,5 +1,6 @@
 using ExcelParsing.Models;
 using ExcelParsing.Services;
+using ExcelParsing.Interfaces;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,8 +14,8 @@ namespace ExcelParsing.Controllers
     public class ExcelParsingController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly ExcelService _excelService;
-        public ExcelParsingController(AppDbContext context, ExcelService excelService)
+        private readonly IExcelService _excelService;
+        public ExcelParsingController(AppDbContext context, IExcelService excelService)
         {
             _context = context;
             _excelService = excelService;

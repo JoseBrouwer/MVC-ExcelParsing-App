@@ -1,11 +1,12 @@
 ﻿using ExcelDataReader;
 using ExcelParsing.Models;
+using ExcelParsing.Interfaces;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.IO;
 
 namespace ExcelParsing.Services
 {
-    public class ExcelService
+    public class ExcelService : IExcelService
     {
         public List<Person> ReadExcelFile(string filePath)
         {

@@ -1,4 +1,4 @@
-namespace ExcelParsing.Tests.Controllers
+namespace ExcelParsing.Tests.Services
 {
     [TestClass]
     public class ExcelServiceTests
