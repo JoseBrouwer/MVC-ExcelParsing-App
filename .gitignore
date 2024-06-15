@@ -29,6 +29,8 @@ sdk/
 ## The build output folder
 bin/
 obj/
+ExcelParsing.Tests\obj\
+ExcelParsing.Tests\bin\
 
 ## VS Code directories
 .vs/
@@ -36,7 +38,7 @@ obj/
 
 # Test Projects
 ## Include your test projects explicitly if needed
-!ExcelParsing.Tests/**
+#!ExcelParsing.Tests/**
 
 # Log files
 *.log
