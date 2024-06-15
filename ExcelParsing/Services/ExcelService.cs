@@ -3,7 +3,7 @@ using ExcelParsing.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.IO;
 
-namespace ExcelParsing.Data
+namespace ExcelParsing.Services
 {
     public class ExcelService
     {
@@ -36,7 +36,7 @@ namespace ExcelParsing.Data
                                     throw new FormatException($"Last name can not be longer than 50 characters");
 
                                 int ageValue = int.Parse(dataTable.Rows[row][3].ToString());
-                                if ( ageValue < 0)
+                                if (ageValue < 0)
                                     throw new FormatException($"Age can not be a negative number");
 
                                 var person = new Person

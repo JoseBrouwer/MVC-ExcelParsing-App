@@ -1,7 +1,7 @@
-namespace ExcelParsing.Tests
+namespace ExcelParsing.Tests.Services
 {
     [TestClass]
-    public class UnitTest1
+    public class ExcelServiceTests
     {
         [TestMethod]
         public void TestMethod1()
