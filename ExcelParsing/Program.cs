@@ -1,3 +1,4 @@
+using ExcelParsing.Interfaces;
 using ExcelParsing.Middleware;
 using ExcelParsing.Models;
 using ExcelParsing.Services;
@@ -11,8 +12,8 @@ builder.Services.AddControllersWithViews();
 //Add Db to Services
 builder.Services.AddDbContext<AppDbContext>();
 
-// Register the ExcelService
-builder.Services.AddScoped<ExcelService>();
+// Register IExcelService and its implementation
+builder.Services.AddScoped<IExcelService, ExcelService>();
 
 var app = builder.Build();
 

@@ -53,7 +53,7 @@ namespace ExcelParsing.Services
                             catch (FormatException ex)
                             {
                                 // Handle specific format exception
-                                throw new Exception($"Data format error in row {row + 1} -> {ex.Message}", ex);
+                                throw new FormatException($"Data format error in row {row + 1} -> {ex.Message}", ex);
                             }
                         }
                     }
@@ -62,7 +62,10 @@ namespace ExcelParsing.Services
             catch (Exception ex)
             {
                 // Log and rethrow the exception to be handled by global exception handler
-                throw new Exception($"{ex.Message}", ex);
+                if (ex is FormatException)
+                    throw new FormatException($"{ex.Message}", ex);
+                else if (ex is FileNotFoundException)
+                    throw new FileNotFoundException($"{ex.Message}", ex);
             }
 
             return persons;
