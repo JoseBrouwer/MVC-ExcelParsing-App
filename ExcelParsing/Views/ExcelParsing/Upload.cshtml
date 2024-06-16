@@ -3,12 +3,15 @@
 }
 
 <h1 class="upload-headers">Upload Excel File</h1>
-<h3 class ="upload-headers">NOTE: Any previously uploaded spreadsheet will be removed in favor of the new upload</h3>
+<h2 class ="upload-headers">NOTE: Any previously uploaded spreadsheet will be removed in favor of the new upload</h2>
+<h3 class="upload-headers">Below are example spreadsheet contents. Refer to error page for any issues</h3>
+<img src="~/images/formatreference.png" alt="Example Spreadsheet Contents" />
 
 <form asp-action="UploadFile" enctype="multipart/form-data" method="post">
     <div class="form-group">
         <label for="fileInput">SELECT FILE:</label>
         <input type="file" id="fileInput" name="file" class="form-control" />
+    </div>
     <div class="form-group">
         <button type="submit" class="btn">Upload</button>
     </div>

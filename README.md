@@ -69,3 +69,5 @@
 - ## Sample Data.xlsx:
 	- ~2000 entries that allow for the full testing of the appliaction with a larger data set
 	- When prompted for a file navigate to this folder and select the file
+
+# Accesibility checked through WCAG AInspector Extension on Firefox
