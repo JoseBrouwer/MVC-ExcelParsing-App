@@ -1,16 +1,17 @@
-# How to run: 
+# How to run:
+- Note all paths reference Windows directories. If on Linux, adjust accordingly.
 - After navigating to the folder `MVC-ExcelParsing-App`
 1. **Ensure .NET 8 SDK is Installed by running (if on Windows dotnet must be in your [PATH](https://learn.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ee537574(v=office.14))):** 
     ```
     dotnet --list-sdks
     ```
 	- If it is not installed you can [download .NET8.0 from the website](https://dotnet.microsoft.com/download)
-2. **From `../MVC-ExcelParsing-App/` run:**
+2. **From `..\MVC-ExcelParsing-App\` run:**
 	```
 	dotnet build
 	```
 	- This will produce some build output for both the main application and the Unit Tests
-3. **To run the app navigate to `../MVC-ExcelParsing-App/ExcelParsing/` and run:**
+3. **To run the app navigate to `..\MVC-ExcelParsing-App\ExcelParsing\` and run:**
 	```
 	dotnet run
 	```
@@ -31,7 +32,7 @@
 	- In this case the URL is: `http://localhost:5009`
 	- This will open the application on your default browser
 		- As long as your terminal is open and you don't `Ctrl + C` the program will run.
-4. **To run the Unit Tests navigate to `../MVC-ExcelParsing-App/ExcelParsing.Tests/` and run:**
+4. **To run the Unit Tests navigate to `..\MVC-ExcelParsing-App\ExcelParsing.Tests\` and run:**
 	```
 	dotnet test
 	```
@@ -52,3 +53,19 @@
 		
 		Workload updates are available. Run `dotnet workload list` for more information.
 		```
+# Sample Files: 
+- The foler `..\ExcelParsing.Tests\Data\` contains three Excel Files: 
+1. ValidData.xlsx
+2. InvalidData.xlsx
+3. Sample Data.xlsx
+
+- ## ValidData.xlsx:
+	- Used in Unit Testing
+	- Has 5 rows/entries
+	- Data tries to use all values for variety
+- ## InvalidData.xlsx:
+	- Used in Unit Testing
+	- Same data as in ValidData.xlsx but some fields contain invalid data that will produce errors
+- ## Sample Data.xlsx:
+	- ~2000 entries that allow for the full testing of the appliaction with a larger data set
+	- When prompted for a file navigate to this folder and select the file
