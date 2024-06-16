@@ -11,11 +11,11 @@ namespace ExcelParsing.Models
 
         [Required]
         [StringLength(50, ErrorMessage = "First Name cannot be longer than 50 characters.")]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = string.Empty;
 
         [Required]
         [StringLength(50, ErrorMessage = "Last Name cannot be longer than 50 characters.")]
-        public string LastName { get; set; }
+        public string LastName { get; set; } = string.Empty;
 
         [Required]
         [Range(0, int.MaxValue, ErrorMessage = "Age must be a positive number.")]

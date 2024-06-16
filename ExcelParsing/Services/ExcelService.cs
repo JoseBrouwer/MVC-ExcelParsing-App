@@ -36,17 +36,20 @@ namespace ExcelParsing.Services
                                 if (lastValue == null || lastValue?.Length > 50)
                                     throw new FormatException($"Last name can not be longer than 50 characters");
 
-                                int ageValue = int.Parse(dataTable.Rows[row][3].ToString());
+                                //default to age=0 if trying to parse a null
+                                int ageValue = int.Parse(dataTable.Rows[row][3].ToString() ?? "0");
                                 if (ageValue < 0)
                                     throw new FormatException($"Age can not be a negative number");
 
                                 var person = new Person
                                 {
-                                    ID = int.Parse(dataTable.Rows[row][0].ToString()),
+                                    //default to ID=0 if null which will throw an exception if more than one ID=0
+                                    ID = int.Parse(dataTable.Rows[row][0].ToString() ?? "0"),
                                     FirstName = firstValue,
                                     LastName = lastValue,
                                     Age = ageValue,
-                                    status = (Person.Status)Enum.Parse(typeof(Person.Status), dataTable.Rows[row][4].ToString())
+                                    //default status=Hold if null
+                                    status = (Person.Status)Enum.Parse(typeof(Person.Status), dataTable.Rows[row][4].ToString() ?? "2")
                                 };
                                 persons.Add(person);
                             }
