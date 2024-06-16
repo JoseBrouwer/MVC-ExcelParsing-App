@@ -138,11 +138,6 @@ namespace ExcelParsing.Controllers
             return RedirectToAction(nameof(Index)); //reload page
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         public IActionResult Error()
         {
             ViewData["ErrorMessage"] = TempData["ErrorMessage"];

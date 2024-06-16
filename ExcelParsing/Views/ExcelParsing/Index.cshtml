@@ -7,6 +7,7 @@
 }
 
 @* <div class="text-center"> *@
+<h1 class="home">Home</h1>
     
 <form asp-controller="ExcelParsing" asp-action="Upload" method="get">
     <button id="upload" type="submit">UPLOAD</button>
@@ -15,7 +16,7 @@
 <div class="search-container">
     <form asp-action="Index" method="get" class="search-form">
         <div class="form-group search-group">
-            <input type="text" name="name" id="nameInput" class="form-control search-input" placeholder="Search by Name" oninput="toggleInput('statusInput', this)">
+            <input type="text" name="name" id="nameInput" class="form-control search-input" placeholder="Search First or Last Name" oninput="toggleInput('statusInput', this)">
             <button type="button" class="btn btn-secondary clear-btn" onclick="clearInput('statusInput','nameInput')">Clear</button>
         </div>
 
@@ -60,22 +61,52 @@
     }
 </div>
 
-<div id="pagination">
-    <form method="get" asp-action="Index">
-        <input type="hidden" name="sortOrder" value="@ViewData["CurrentSort"]" />
-        @for(int i = 1; i <= totalPages; i++)
+<form id="paginationForm" method="get" asp-action="Index">
+    <input type="hidden" name="sortOrder" value="@ViewData["CurrentSort"]" />
+    <input type="hidden" name="page" id="pageInput" value="@currentPage" />
+    <div id="pagination">
+        @if (totalPages > 1)
         {
-            <button class="page-buttons" type="submit" name="page" value="@i">@i</button>
+            @for (int i = 1; i <= totalPages; i++)
+            {
+                <button class="page-buttons" onclick="setPage(@i)">@i</button>
+            }
         }
-    </form>
-</div>
+        else
+        {
+            <button class="page-buttons" type="button" aria-hidden="true">1</button>
+        }
+    </div>
+</form>
     
 <div>
-    <form method="get" asp-action="Index">
-        <input type="hidden" name="sortOrder" value="@ViewData["CurrentSort"]" />
-        <button type="submit" class="prev-next-buttons" name="page" value="@(currentPage - 1)" @(currentPage <= 1 ? "disabled" : "")>Previous</button>
-        <button type="submit" class="prev-next-buttons" name="page" value="@(currentPage + 1)" @(currentPage >= totalPages ? "disabled" : "")>Next</button>
-    </form>
+    <input type="hidden" name="sortOrder" value="@ViewData["CurrentSort"]" />
+    <button class="prev-next-buttons" onclick="prevPage()">Previous</button>
+    <button class="prev-next-buttons" onclick="nextPage()">Next</button>
 </div>
+
+@section Scripts {
+    <script>
+        function setPage(page) {
+            document.getElementById("pageInput").value = page;
+            document.getElementById("paginationForm").submit();
+        }
+
+        function prevPage() {
+            let currentPage = @currentPage;
+            if (currentPage > 1) {
+                setPage(currentPage - 1);
+            }
+        }
+
+        function nextPage() {
+            let currentPage = @currentPage;
+            let totalPages = @totalPages;
+            if (currentPage < totalPages) {
+                setPage(currentPage + 1);
+            }
+        }
+    </script>
+}
 
 @* </div> *@

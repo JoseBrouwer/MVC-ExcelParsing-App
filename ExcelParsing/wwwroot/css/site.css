@@ -29,6 +29,9 @@ body {
     background-color: rgb(0, 126, 167);
 }
 /*---------------------My Styles---------------------*/
+.home{
+    color: white;
+}
 #upload {
     width: 200px;
     height: auto;
@@ -177,9 +180,12 @@ button[type="submit"] {
     border-color: rgb(137, 195, 29);
 }
 .error-box {
-    background: rgb(200, 83, 54);
+    background: rgb(180, 83, 54);
     border-radius: 10px;
 }
 .error-text{
     color: white;
+}
+label{
+    color:white;
 }
