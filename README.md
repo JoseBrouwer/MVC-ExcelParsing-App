@@ -1,3 +1,24 @@
+# What is MVC-ExcelParsing-App?
+- Model-View-Controller(MVC) Full-Stack Web Application
+- Accepts an Excel file as input and parses its contents based on the following column definitions:
+	- **ID** - integer
+	- **First Name** - string, less than 50 characters
+	- **Last Name** - string, less than 50 characters
+	- **Age** - positive integer
+	- **Status** - look up value of Active, Inactive, Hold
+- If any of these fields do not adhere to the specified format an error will be presented, which indicates the row violating the guidelines and the issue found.
+- If the upload is successful and contains no errors in formatting, a table of 50 entries per page will be populated with the spreadsheet contents. 
+- The table is paginated and allows for sorting in ascending and descending order of each column.
+	- Alphabetical for First and Last names
+	- Iterates through each status, starting at Active, then Inactive, then Hold
+- The table can also be queried for First or Last names or by status
+- Any subsequent uploads will clear the database in favor of the newly provided spreadsheet.
+
+# Technologies: 
+- C# - Back-End
+- Razor Pages - Front-End
+- Entity-Framework Core (EFC) - Database
+
 # How to run:
 - Note all paths reference Windows directories. If on Linux, adjust accordingly.
 - After navigating to the folder `MVC-ExcelParsing-App`
